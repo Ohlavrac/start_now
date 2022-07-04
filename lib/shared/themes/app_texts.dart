@@ -8,7 +8,7 @@ class AppTexts {
   );
 
   static final title = GoogleFonts.openSans(
-    fontSize: 14,
+    fontSize: 16,
     color: Colors.white,
     fontWeight: FontWeight.bold
   );
