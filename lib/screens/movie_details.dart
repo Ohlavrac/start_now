@@ -5,14 +5,18 @@ import 'package:start_now/models/movies.dart';
 import 'package:start_now/repositories/repository_movie_detail.dart';
 import 'package:start_now/shared/themes/app_colors.dart';
 import 'package:start_now/shared/themes/app_texts.dart';
+import 'package:start_now/shared/widgets/recommended_movies_card.dart';
 
 class MovieDetails extends StatelessWidget {
-  final String movieID = "297761";
+  //final String movieID = "297761";
   const MovieDetails({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     RepositoryMovieDetail repositoryMovieDetail = RepositoryMovieDetail();
+    var movieID = ModalRoute.of(context)!.settings.arguments as String?;
+    movieID == null ? movieID = "297761" : movieID = ModalRoute.of(context)!.settings.arguments as String;
+
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -83,12 +87,18 @@ class MovieDetails extends StatelessWidget {
                         )
                       ],
                     ),
-                    Text("${movie.tagline}", style: AppTexts.tagname,),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10,),
+                      child: Text("${movie.tagline}", style: AppTexts.tagname,),
+                    ),
                     Text("Sinopse:", style: AppTexts.title,),
                     Text("${movie.overview}", textAlign: TextAlign.justify, style: AppTexts.overview,),
-                    Text("Recomendações", style: AppTexts.title),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10,bottom: 5),
+                      child: Text("Recomendações", style: AppTexts.title),
+                    ),
                     FutureBuilder(
-                      future: repositoryMovieDetail.getRecommendations(movieID),
+                      future: repositoryMovieDetail.getRecommendations(movieID!),
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
                           var movies = snapshot.data as List<Results>;
@@ -98,15 +108,7 @@ class MovieDetails extends StatelessWidget {
                               itemCount: 10,
                               itemBuilder: (context, index) {
                                 Results resultsMovies = movies[index];
-                                return Column(
-                                  children: [
-                                    Card(
-                                      margin: EdgeInsets.symmetric(horizontal: 10),
-                                      child: Image.network("https://image.tmdb.org/t/p/original/${resultsMovies.backdropPath}", height: 150,),
-                                    ),
-                                    Text("${resultsMovies.title}", style: AppTexts.title,),
-                                  ],
-                                );
+                                return RecommendedMoviesCard(resultsMovies: resultsMovies);
                               },
                             ),
                           );
@@ -128,7 +130,4 @@ class MovieDetails extends StatelessWidget {
       ),
     );
   }
-}
-
-class $ {
 }
