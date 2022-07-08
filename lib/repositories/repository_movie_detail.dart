@@ -1,11 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:start_now/models/movies.dart';
+import 'package:start_now/models/search_movie.dart';
 
 import '../models/movie_detail.dart';
 
 class RepositoryMovieDetail {
   final String endpoint = "?api_key=816e85e9e115d47a54d5f262723dac3d&language=pt-Br";
   final String endpointRecommendations = "/recommendations?api_key=816e85e9e115d47a54d5f262723dac3d&language=pt-BR&page=1";
+  final String endpointSearchMovie = "/search/movie?api_key=816e85e9e115d47a54d5f262723dac3d&language=pt-BR&query=";
 
   RepositoryMovieDetail();
 
@@ -29,5 +31,17 @@ class RepositoryMovieDetail {
     } else {
       return null;
     }
-  } 
+  }
+
+  Future<List<ResultsMovieSearch>?> getSearchMovies(String movieName) async {
+    Response response;
+    if (movieName!="") {
+      response = await Dio().get("https://api.themoviedb.org/3"+endpointSearchMovie+movieName+"&page=1&include_adult=false&region=BR");
+      if (response.statusCode == 200) {
+        return SearchMovie.fromJson(response.data).results;
+      } else {
+        return null;
+      }
+    }
+  }
 }
