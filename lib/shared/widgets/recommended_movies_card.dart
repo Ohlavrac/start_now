@@ -9,6 +9,15 @@ class RecommendedMoviesCard extends StatelessWidget {
 
   const RecommendedMoviesCard({Key? key, required this.resultsMovies}) : super(key: key);
 
+  String verifyImage(String imageName) {
+    print(">>>>>>>"+imageName);
+    if (imageName == "null") {
+      return "https://media.istockphoto.com/vectors/error-404-vector-id538038858";
+    } else {
+      return "https://image.tmdb.org/t/p/original/${imageName}";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -21,7 +30,7 @@ class RecommendedMoviesCard extends StatelessWidget {
           Card(
             margin: const EdgeInsets.only(right: 10),
             child: Image.network(
-              "https://image.tmdb.org/t/p/original/${resultsMovies.backdropPath}",
+              verifyImage(resultsMovies.backdropPath.toString()),
               height: 150,
               loadingBuilder: (BuildContext context, Widget child,ImageChunkEvent? loadingProgress) {
                 if (loadingProgress == null) {

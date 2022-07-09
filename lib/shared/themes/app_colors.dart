@@ -1,6 +1,7 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class AppColors {
-  static final background = Color(0xFF111C2E);
-  static final loadimage = Color(0xFFe6dddc);
+  static const background = Color(0xFF111C2E);
+  static const loadimage = Color(0xFFe6dddc);
+  static const colorIcon = Colors.white30;
 }
