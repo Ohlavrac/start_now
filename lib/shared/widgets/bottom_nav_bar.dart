@@ -2,20 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:start_now/shared/themes/app_colors.dart';
 
 class MyBottomNavBar extends StatefulWidget {
-  const MyBottomNavBar({Key? key}) : super(key: key);
+  final void Function(int value)? onItemTapped;
+  final int selectedIndex;
+  const MyBottomNavBar({Key? key, required this.onItemTapped, required this.selectedIndex}) : super(key: key);
 
   @override
   State<MyBottomNavBar> createState() => _MyBottomNavBarState();
 }
 
 class _MyBottomNavBarState extends State<MyBottomNavBar> {
-  int _selectedIndex = 0;
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -67,8 +62,8 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
             ),
           ),
         ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
+        currentIndex: widget.selectedIndex,
+        onTap: widget.onItemTapped,
       ),
     );
   }

@@ -3,16 +3,24 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:start_now/models/movie_detail.dart';
 import 'package:start_now/models/movies.dart';
 import 'package:start_now/repositories/repository_movie_detail.dart';
+import 'package:start_now/screens/home_screen.dart';
+import 'package:start_now/screens/search_page.dart';
+import 'package:start_now/screens/top_ten_page.dart';
 import 'package:start_now/shared/themes/app_colors.dart';
 import 'package:start_now/shared/themes/app_texts.dart';
+import 'package:start_now/shared/widgets/bottom_nav_bar.dart';
 import 'package:start_now/shared/widgets/recommended_movies_card.dart';
 
-class MovieDetails extends StatelessWidget {
+class MovieDetails extends StatefulWidget {
   //final String movieID = "297761";
   const MovieDetails({Key? key}) : super(key: key);
 
+  @override
+  State<MovieDetails> createState() => _MovieDetailsState();
+}
+
+class _MovieDetailsState extends State<MovieDetails> {
   String verifyImage(String imageName) {
-    print(">>>>>>>"+imageName);
     if (imageName == "null") {
       return "https://media.istockphoto.com/vectors/error-404-vector-id538038858";
     } else {
@@ -20,23 +28,42 @@ class MovieDetails extends StatelessWidget {
     }
   }
 
+  int _selectedIndex = 0;
+  int temp = 3;
+
+  void _onItemTapped(int index) {
+    print(index);
+    setState(() {
+      _selectedIndex = index;
+      temp = 0;
+    });
+  }
+
+  List<Widget> screens = [
+    const HomeScreen(),
+    const SearchPage(),
+    const TopTenPage()
+  ];
+
   @override
   Widget build(BuildContext context) {
     RepositoryMovieDetail repositoryMovieDetail = RepositoryMovieDetail();
     var movieID = ModalRoute.of(context)!.settings.arguments as String?;
     movieID == null ? movieID = "297761" : movieID = ModalRoute.of(context)!.settings.arguments as String;
+    
 
 
     return Scaffold(
       backgroundColor: AppColors.background,
-      body: SingleChildScrollView(
-        child: SafeArea(
+      body: temp == 3 ? SingleChildScrollView(
+        child:SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(12),
             child: FutureBuilder(
               future: repositoryMovieDetail.get(movieID),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
+                  print("Ola AQUIIII ${_selectedIndex}");
                   var movie = snapshot.data as MovieDetail;
       
                   String movieRunTime(int minutes) {
@@ -151,8 +178,9 @@ class MovieDetails extends StatelessWidget {
               },
             ),
           ),
-        ),
-      ),
+        )
+      ) : screens[_selectedIndex],
+      bottomNavigationBar: MyBottomNavBar(onItemTapped: _onItemTapped, selectedIndex: _selectedIndex,),
     );
   }
 }

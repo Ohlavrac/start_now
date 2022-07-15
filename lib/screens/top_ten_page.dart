@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:start_now/shared/widgets/bottom_nav_bar.dart';
 
 import '../shared/themes/app_colors.dart';
 import '../shared/widgets/top_ten_list.dart';
 
-class TopTenPage extends StatelessWidget {
+class TopTenPage extends StatefulWidget {
   const TopTenPage({Key? key}) : super(key: key);
 
+  @override
+  State<TopTenPage> createState() => _TopTenPageState();
+}
+
+class _TopTenPageState extends State<TopTenPage> {
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -25,7 +29,6 @@ class TopTenPage extends StatelessWidget {
             child: TopTenView(),
           ),
         ),
-        bottomNavigationBar: const MyBottomNavBar(),
       ),
     );
   }
