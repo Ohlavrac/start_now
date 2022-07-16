@@ -8,6 +8,7 @@ class RepositoryMovieDetail {
   final String endpoint = "?api_key=816e85e9e115d47a54d5f262723dac3d&language=pt-Br";
   final String endpointRecommendations = "/recommendations?api_key=816e85e9e115d47a54d5f262723dac3d&language=pt-BR&page=1";
   final String endpointSearchMovie = "/search/movie?api_key=816e85e9e115d47a54d5f262723dac3d&language=pt-BR&query=";
+  final String endpointTopMovies = "/top_rated?api_key=816e85e9e115d47a54d5f262723dac3d&language=pt-BR&page=1&region=BR";
 
   RepositoryMovieDetail();
 
@@ -42,6 +43,16 @@ class RepositoryMovieDetail {
       } else {
         return null;
       }
+    }
+  }
+
+  Future<List<Results>?> getTop10Movies() async {
+    Response response;
+    response = await Dio().get("https://api.themoviedb.org/3/movie"+endpointTopMovies);
+    if (response.statusCode == 200) {
+      return Movies.fromJson(response.data).results;
+    } else {
+      return null;
     }
   }
 }

@@ -1,28 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:start_now/models/movies.dart';
 
-final ListMovie = [
-  'Thor: Love and Thunder',
-  'Thor: Love and Thunder',
-  'Thor: Love and Thunder',
-  'Thor: Love and Thunder',
-  'Thor: Love and Thunder',
-  'Thor: Love and Thunder',
-  'Thor: Love and Thunder',
-  'Thor: Love and Thunder',
-  'Thor: Love and Thunder',
-  'Thor: Love and Thunder',
-];
+import '../themes/app_colors.dart';
 
 class TopTenView extends StatelessWidget {
-  const TopTenView({Key? key}) : super(key: key);
+  final Results movie;
+  final int position;
+
+  const TopTenView({Key? key, required this.movie, required this.position}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: ListMovie.length,
-      itemBuilder: (BuildContext context, int index) {
-        return GestureDetector(
-          onDoubleTap: () {},
+    return GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, "/movie_details", arguments: movie.id.toString());
+          },
           child: Card(
             color: const Color.fromRGBO(85, 85, 85, 1),
             shape: RoundedRectangleBorder(
@@ -36,8 +28,22 @@ class TopTenView extends StatelessWidget {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: Image.asset(
-                      'assets/images/thor_movie.jpg',
+                    child: Image.network(
+                      "https://image.tmdb.org/t/p/original/${movie.posterPath}",
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) {
+                          return child;
+                        } 
+                        return Container(
+                          height: 150,
+                          width: 100,
+                          decoration: BoxDecoration(
+                            color: AppColors.loadimage,
+                            borderRadius: BorderRadius.circular(10)
+                          ),
+                          child: const Center(child: Text("Carregando...")),
+                        );
+                      },
                     ),
                   ),
                   Padding(
@@ -48,22 +54,31 @@ class TopTenView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            SizedBox(
+                              width: 150,
+                              child: Text(
+                                "${movie.title}",
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
                             Text(
-                              ListMovie[index],
+                              '${movie.releaseDate}',
                               style: const TextStyle(
                                 color: Colors.white,
                               ),
                             ),
-                            const Text(
-                              '07/07/2022',
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                            const Text(
-                              'sinopsis',
-                              style: TextStyle(
-                                color: Colors.white,
+                            SizedBox(
+                              width: 150,
+                              child: Text(
+                                "${movie.overview}",
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                ),
+                                textAlign: TextAlign.justify,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 3,
                               ),
                             ),
                           ],
@@ -72,7 +87,7 @@ class TopTenView extends StatelessWidget {
                           padding: const EdgeInsets.only(left: 35.0),
                           child: CircleAvatar(
                             child: Text(
-                              '${index + 1}',
+                              '$position',
                             ),
                           ),
                         ),
@@ -84,7 +99,5 @@ class TopTenView extends StatelessWidget {
             ),
           ),
         );
-      },
-    );
   }
 }
