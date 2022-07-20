@@ -8,15 +8,14 @@ class AppTexts {
   );
 
   static final title = GoogleFonts.openSans(
-    fontSize: 16,
-    color: Colors.white,
-    fontWeight: FontWeight.bold
-  );
+      fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold);
+
+  static final tag = GoogleFonts.openSans(
+      fontSize: 14, color: Colors.white, fontWeight: FontWeight.bold);
 
   static final tagname = GoogleFonts.openSans(
-    fontStyle: FontStyle.italic,
-    fontSize: 14,
-    color: Colors.white,
-    fontWeight: FontWeight.normal
-  );
+      fontStyle: FontStyle.italic,
+      fontSize: 14,
+      color: Colors.white,
+      fontWeight: FontWeight.normal);
 }

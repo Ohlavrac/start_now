@@ -6,9 +6,9 @@ Future main() async {
 
   await initialization(null);
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 Future initialization(BuildContext? context) async {
-  await Future.delayed(Duration(seconds: 3));
+  await Future.delayed(const Duration(seconds: 3));
 }
