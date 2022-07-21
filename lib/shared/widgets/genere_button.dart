@@ -18,6 +18,7 @@ class GenereButton extends StatelessWidget {
         ),
         child: Text(
           genere,
+          style: const TextStyle(fontSize: 10.0),
         ),
       ),
     );
