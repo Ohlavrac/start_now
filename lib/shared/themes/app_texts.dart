@@ -11,7 +11,7 @@ class AppTexts {
       fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold);
 
   static final tag = GoogleFonts.openSans(
-      fontSize: 14, color: Colors.white, fontWeight: FontWeight.bold);
+      fontSize: 12, color: Colors.white, fontWeight: FontWeight.bold);
 
   static final tagname = GoogleFonts.openSans(
       fontStyle: FontStyle.italic,
