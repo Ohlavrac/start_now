@@ -60,136 +60,138 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColors.background,
-        body: SafeArea(
-            child: Padding(
-                //  physics: const BouncingScrollPhysics(),
-                padding: const EdgeInsets.all(10.0),
-                child: Column(children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    margin: const EdgeInsets.only(left: 30, right: 30, top: 30),
-                    height: 200,
-                    child: PageView(controller: _controller, children: [
-                      Container(
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage('assets/images/thor_movie.jpg'),
-                              fit: BoxFit.cover),
-                        ),
-                      ),
-                      Container(
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage('assets/images/thor_movie.jpg'),
-                              fit: BoxFit.cover),
-                        ),
-                      ),
-                      Container(
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage('assets/images/thor_movie.jpg'),
-                              fit: BoxFit.cover),
-                        ),
-                      ),
-                      Container(
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage('assets/images/thor_movie.jpg'),
-                              fit: BoxFit.cover),
-                        ),
-                      ),
-                    ]),
-                  ),
-                  const SizedBox(height: 10),
-                  SmoothPageIndicator(
-                    controller: _controller,
-                    count: 3,
-                    effect: const ExpandingDotsEffect(
-                      activeDotColor: AppColors.loadimage,
-                      dotColor: AppColors.colorIcon,
-                      dotHeight: 8,
-                      dotWidth: 8,
-                      spacing: 2,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Popular no Brasil", style: AppTexts.tag),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 170,
-                    child: Expanded(
-                      child: GridView.builder(
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 1,
+        body: SingleChildScrollView(
+          child: SafeArea(
+              child: Padding(
+                  //  physics: const BouncingScrollPhysics(),
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      margin: const EdgeInsets.only(left: 30, right: 30, top: 30),
+                      height: 200,
+                      child: PageView(controller: _controller, children: [
+                        Container(
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage('assets/images/thor_movie.jpg'),
+                                fit: BoxFit.cover),
                           ),
-                          itemCount: dataMovie.length,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              margin: const EdgeInsets.only(right: 30),
-                              child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    SizedBox(
-                                      height: 160,
-                                      width: MediaQuery.of(context).size.width,
-                                      child: Image.network(
-                                        "${dataMovie[index]['image']}",
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ]),
-                            );
-                          }),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Nos Cinemas", style: AppTexts.tag),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 170,
-                    child: Expanded(
-                      child: GridView.builder(
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 1,
+                        ),
+                        Container(
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage('assets/images/thor_movie.jpg'),
+                                fit: BoxFit.cover),
                           ),
-                          itemCount: dataMovie.length,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              margin: const EdgeInsets.only(right: 30),
-                              child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    SizedBox(
-                                      height: 160,
-                                      width: MediaQuery.of(context).size.width,
-                                      child: Image.network(
-                                        "${dataMovie[index]['image']}",
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ]),
-                            );
-                          }),
+                        ),
+                        Container(
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage('assets/images/thor_movie.jpg'),
+                                fit: BoxFit.cover),
+                          ),
+                        ),
+                        Container(
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage('assets/images/thor_movie.jpg'),
+                                fit: BoxFit.cover),
+                          ),
+                        ),
+                      ]),
                     ),
-                  ),
-                ]))));
+                    const SizedBox(height: 10),
+                    SmoothPageIndicator(
+                      controller: _controller,
+                      count: 3,
+                      effect: const ExpandingDotsEffect(
+                        activeDotColor: AppColors.loadimage,
+                        dotColor: AppColors.colorIcon,
+                        dotHeight: 8,
+                        dotWidth: 8,
+                        spacing: 2,
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Popular no Brasil", style: AppTexts.tag),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 170,
+                      child: Expanded(
+                        child: GridView.builder(
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 1,
+                            ),
+                            itemCount: dataMovie.length,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                margin: const EdgeInsets.only(right: 30),
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        height: 160,
+                                        width: MediaQuery.of(context).size.width,
+                                        child: Image.network(
+                                          "${dataMovie[index]['image']}",
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ]),
+                              );
+                            }),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Nos Cinemas", style: AppTexts.tag),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 170,
+                      child: Expanded(
+                        child: GridView.builder(
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 1,
+                            ),
+                            itemCount: dataMovie.length,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                margin: const EdgeInsets.only(right: 30),
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        height: 160,
+                                        width: MediaQuery.of(context).size.width,
+                                        child: Image.network(
+                                          "${dataMovie[index]['image']}",
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ]),
+                              );
+                            }),
+                      ),
+                    ),
+                  ]))),
+        ));
   }
 }
