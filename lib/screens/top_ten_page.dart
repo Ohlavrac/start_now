@@ -21,6 +21,7 @@ class _TopTenPageState extends State<TopTenPage> {
       child: Scaffold(
         backgroundColor: AppColors.background,
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: const Padding(
             padding: EdgeInsets.only(left: 10.0),
             child: Text('Top10 Filmes: '),
@@ -29,7 +30,7 @@ class _TopTenPageState extends State<TopTenPage> {
         ),
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: FutureBuilder(
                 future: repositoryMovie.getTop10Movies(),
                 builder: (context, snapshot) {
@@ -50,7 +51,7 @@ class _TopTenPageState extends State<TopTenPage> {
                   } else if (snapshot.hasError) {
                     return const Text("ERROR");
                   }
-                  return const Center(child: Text("..."),);
+                  return const Center(child: CircularProgressIndicator());
                 },
               ),
           ),

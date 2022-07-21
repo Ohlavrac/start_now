@@ -52,12 +52,12 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.star_border_outlined,
+              Icons.rocket_launch_outlined,
               color: AppColors.colorIcon,
             ),
             label: 'Top10',
             activeIcon: Icon(
-              Icons.star_border_outlined,
+              Icons.rocket_launch_outlined,
               color: Colors.white,
             ),
           ),

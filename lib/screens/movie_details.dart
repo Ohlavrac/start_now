@@ -51,8 +51,6 @@ class _MovieDetailsState extends State<MovieDetails> {
     var movieID = ModalRoute.of(context)!.settings.arguments as String?;
     movieID == null ? movieID = "297761" : movieID = ModalRoute.of(context)!.settings.arguments as String;
     
-
-
     return Scaffold(
       backgroundColor: AppColors.background,
       body: temp == 3 ? SingleChildScrollView(
@@ -63,7 +61,6 @@ class _MovieDetailsState extends State<MovieDetails> {
               future: repositoryMovieDetail.get(movieID),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  print("Ola AQUIIII ${_selectedIndex}");
                   var movie = snapshot.data as MovieDetail;
       
                   String movieRunTime(int minutes) {
