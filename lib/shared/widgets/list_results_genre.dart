@@ -31,9 +31,9 @@ class ListResultGenre extends StatelessWidget {
             ),
           );
         } else if (snapshot.hasError) {
-          return Center(child: Text("ERROR"),);
+          return const Center(child: Text("ERROR"),);
         } 
-        return Center(child: CircularProgressIndicator());
+        return const Center(child: CircularProgressIndicator());
       }
     );
   }

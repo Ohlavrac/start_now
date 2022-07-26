@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:start_now/controllers/verify_image.dart';
 
 import '../../models/search_movie.dart';
 import '../themes/app_colors.dart';
@@ -10,16 +11,10 @@ class CardMovie extends StatelessWidget {
       {Key? key, required this.resultsMovieSearch,})
       : super(key: key);
 
-  String verifyImage(String imageName) {
-    if (imageName == "null") {
-      return "https://media.istockphoto.com/vectors/error-404-vector-id538038858";
-    } else {
-      return "https://image.tmdb.org/t/p/original/${imageName}";
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
+    VerifyImage verifyImage = VerifyImage();
+
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, "/movie_details", arguments: resultsMovieSearch.id.toString());
@@ -38,7 +33,7 @@ class CardMovie extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.network(
-                 verifyImage(resultsMovieSearch.posterPath.toString()),
+                 verifyImage.verifyImage(resultsMovieSearch.posterPath.toString()),
                  height: 150,
                  width: 100,
                  loadingBuilder: (BuildContext context, Widget child,ImageChunkEvent? loadingProgress) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:start_now/controllers/verify_image.dart';
 
 import '../../models/movies.dart';
 import '../themes/app_colors.dart';
@@ -9,19 +10,12 @@ class RecommendedMoviesCard extends StatelessWidget {
 
   const RecommendedMoviesCard({Key? key, required this.resultsMovies}) : super(key: key);
 
-  String verifyImage(String imageName) {
-    if (imageName == "null") {
-      return "https://media.istockphoto.com/vectors/error-404-vector-id538038858";
-    } else {
-      return "https://image.tmdb.org/t/p/original/${imageName}";
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
+    VerifyImage verifyImage = VerifyImage();
+
     return GestureDetector(
       onTap: () {
-        print("MovieID ${resultsMovies.id}");
         Navigator.pushNamed(context, "/movie_details", arguments: resultsMovies.id.toString());
       },
       child: Column(
@@ -29,7 +23,7 @@ class RecommendedMoviesCard extends StatelessWidget {
           Card(
             margin: const EdgeInsets.only(right: 10),
             child: Image.network(
-              verifyImage(resultsMovies.backdropPath.toString()),
+              verifyImage.verifyImage(resultsMovies.backdropPath.toString()),
               height: 150,
               loadingBuilder: (BuildContext context, Widget child,ImageChunkEvent? loadingProgress) {
                 if (loadingProgress == null) {

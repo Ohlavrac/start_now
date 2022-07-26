@@ -44,7 +44,7 @@ class Results {
   String? posterPath;
   String? releaseDate;
   bool? video;
-  double? voteAverage;
+  num? voteAverage;
   int? voteCount;
 
   Results(

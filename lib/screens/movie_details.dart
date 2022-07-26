@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:start_now/controllers/verify_image.dart';
 import 'package:start_now/models/movie_detail.dart';
 import 'package:start_now/models/movies.dart';
 import 'package:start_now/repositories/repository_movie_detail.dart';
@@ -20,13 +21,6 @@ class MovieDetails extends StatefulWidget {
 }
 
 class _MovieDetailsState extends State<MovieDetails> {
-  String verifyImage(String imageName) {
-    if (imageName == "null") {
-      return "https://media.istockphoto.com/vectors/error-404-vector-id538038858";
-    } else {
-      return "https://image.tmdb.org/t/p/original/${imageName}";
-    }
-  }
 
   int _selectedIndex = 0;
   int temp = 3;
@@ -47,6 +41,7 @@ class _MovieDetailsState extends State<MovieDetails> {
 
   @override
   Widget build(BuildContext context) {
+    VerifyImage verifyImage = VerifyImage();
     RepositoryMovieDetail repositoryMovieDetail = RepositoryMovieDetail();
     var movieID = ModalRoute.of(context)!.settings.arguments as String?;
     movieID == null ? movieID = "297761" : movieID = ModalRoute.of(context)!.settings.arguments as String;
@@ -77,164 +72,107 @@ class _MovieDetailsState extends State<MovieDetails> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Image.network(
-                                verifyImage(movie.posterPath.toString()),
-                                height: 230,
-                                width: 150,
-                              ),
-                              SizedBox(
-                                width: 200,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "${movie.title} (${movie.releaseDate?.length == 0 ? "" : movie.releaseDate?.substring(0, 4)})",
-                                        style: AppTexts.title,
-                                      ),
-                                      Text(
-                                        "${movie.releaseDate} (${movie.productionCountries!.isNotEmpty ? movie.productionCountries![0].iso31661 : ""}) | ${movieRunTime(movie.runtime!)}",
-                                        style: AppTexts.overview,
-                                      ),
-                                      SizedBox(
-                                        height: 30,
-                                        width: 200,
-                                        child: ListView.builder(
-                                          itemCount: movie.genres!.length,
-                                          scrollDirection: Axis.horizontal,
-                                          itemBuilder: (context, index) {
-                                            return Text(
-                                              "${movie.genres![index].name}  ",
-                                              style: AppTexts.overview,
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          CircularPercentIndicator(
-                                            radius: 25,
-                                            lineWidth: 4.0,
-                                            percent: movie.voteAverage! / 10,
-                                            center: Text(
-                                              "${movie.voteAverage!.toInt() * 10}%",
-                                              style: AppTexts.title,
-                                            ),
-                                            progressColor: Colors.red,
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 5),
-                                            child: SizedBox(
-                                                width: 130,
-                                                child: Text(
-                                                  "Avaliação dos usuários",
-                                                  style: AppTexts.title,
-                                                )),
-                                          )
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 10,
-                            ),
-                            child: Text(
-                              "${movie.tagline}",
-                              style: AppTexts.tagname,
-                            ),
-                          ),
-                          Text(
-                            "Sinopse:",
-                            style: AppTexts.title,
-                          ),
-                          movie.overview == ""
-                              ? Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 60),
-                                  child: Center(
-                                      child: Text(
-                                    "Esse filme não tem Sinopse '-'",
-                                    style: AppTexts.title,
-                                  )),
-                                )
-                              : Text(
-                                  "${movie.overview}",
-                                  textAlign: TextAlign.justify,
-                                  style: AppTexts.overview,
-                                ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10, bottom: 5),
-                            child: Text("Recomendações", style: AppTexts.title),
-                          ),
-                          FutureBuilder(
-                            future: repositoryMovieDetail
-                                .getRecommendations(movieID!),
-                            builder: (context, snapshot) {
-                              if (snapshot.hasData) {
-                                var movies = snapshot.data as List<Results>;
-                                if (movies.isEmpty) {
-                                  return Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 60),
-                                    child: Center(
-                                        child: Text(
-                                      "Não a recomendações para esse filme",
-                                      style: AppTexts.title,
-                                    )),
-                                  );
-                                }
-                                return SizedBox(
-                                  height: 200,
-                                  width: double.infinity,
-                                  child: Expanded(
+                          Image.network(verifyImage.verifyImage(movie.posterPath.toString()), height: 230, width: 150,),
+                          SizedBox(
+                            width: 200,
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("${movie.title} (${movie.releaseDate?.length == 0 ? "" : movie.releaseDate?.substring(0,4)})", style: AppTexts.title,),
+                                  Text("${movie.releaseDate} (${movie.productionCountries!.isNotEmpty ? movie.productionCountries![0].iso31661 : ""}) | ${movieRunTime(movie.runtime!)}", style: AppTexts.overview,),
+                                  SizedBox(
+                                    height: 30,
+                                    width: 200,
                                     child: ListView.builder(
+                                      itemCount: movie.genres!.length,
                                       scrollDirection: Axis.horizontal,
-                                      itemCount: 10,
                                       itemBuilder: (context, index) {
-                                        Results resultsMovies = movies[index];
-                                        return RecommendedMoviesCard(
-                                            resultsMovies: resultsMovies);
+                                        return Text("${movie.genres![index].name}  ", style: AppTexts.overview,);
                                       },
                                     ),
                                   ),
-                                );
-                              } else if (snapshot.hasError) {
-                                return const Text("ERROR");
-                              }
-                              return const CircularProgressIndicator();
-                            },
-                          ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      CircularPercentIndicator(
+                                        radius: 25,
+                                        lineWidth: 4.0,
+                                        percent: movie.voteAverage! / 10,
+                                        center: Text("${movie.voteAverage!.toInt() * 10}%", style: AppTexts.title,),
+                                        progressColor: Colors.red,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 5),
+                                        child: SizedBox(width: 130, child: Text("Avaliação dos usuários", style: AppTexts.title,)),
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
                         ],
-                      );
-                    } else if (snapshot.hasError) {
-                      return const Text("ERROR");
-                    }
-                    return const Center(child: CircularProgressIndicator());
-                  },
-                ),
-              ),
-            ))
-          : screens[_selectedIndex],
-      bottomNavigationBar: MyBottomNavBar(
-        onItemTapped: _onItemTapped,
-        selectedIndex: _selectedIndex,
-      ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10,),
+                        child: Text("${movie.tagline}", style: AppTexts.tagname,),
+                      ),
+                      Text("Sinopse:", style: AppTexts.title,),
+                      movie.overview == "" ? Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 60),
+                        child: Center(child: Text("Esse filme não tem Sinopse '-'", style: AppTexts.title,)),
+                      ) :
+                      Text("${movie.overview}", textAlign: TextAlign.justify, style: AppTexts.overview,),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10,bottom: 5),
+                        child: Text("Recomendações", style: AppTexts.title),
+                      ),
+                      FutureBuilder(
+                        future: repositoryMovieDetail.getRecommendations(movieID!),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            var movies = snapshot.data as List<Results>;
+                            if (movies.isEmpty) {
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 60),
+                                child: Center(child: Text("Não a recomendações para esse filme", style: AppTexts.title,)),
+                              );
+                            }
+                            return SizedBox(
+                              height: 200,
+                              width: double.infinity,
+                              child: Expanded(
+                                child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: 10,
+                                  itemBuilder: (context, index) {
+                                    Results resultsMovies = movies[index];
+                                    return RecommendedMoviesCard(resultsMovies: resultsMovies);
+                                  },
+                                ),
+                              ),
+                            );
+                          } else if (snapshot.hasError) {
+                            return const Text("ERROR");
+                          }
+                          return const CircularProgressIndicator();
+                        },
+                      ),
+                    ],
+                  );
+                } else if (snapshot.hasError) {
+                  return const Text("ERROR");
+                }
+                return const Center(child: CircularProgressIndicator());
+              },
+            ),
+          ),
+        )
+      ) : screens[_selectedIndex],
+      bottomNavigationBar: MyBottomNavBar(onItemTapped: _onItemTapped, selectedIndex: _selectedIndex,),
     );
   }
 }
