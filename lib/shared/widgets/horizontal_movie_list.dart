@@ -20,11 +20,15 @@ class HorizontalMovieList extends StatelessWidget {
           if (movies.isEmpty) {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 60),
-              child: Center(child: Text("Não a recomendações para esse filme", style: AppTexts.title,)),
+              child: Center(
+                  child: Text(
+                "Não a recomendações para esse filme",
+                style: AppTexts.title,
+              )),
             );
           }
           return SizedBox(
-            height: 200,
+            height: 180,
             width: double.infinity,
             child: Expanded(
               child: ListView.builder(
@@ -34,24 +38,27 @@ class HorizontalMovieList extends StatelessWidget {
                   Results resultsMovies = movies[index];
                   return GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, "/movie_details", arguments: resultsMovies.id.toString());
+                      Navigator.pushNamed(context, "/movie_details",
+                          arguments: resultsMovies.id.toString());
                     },
                     child: Card(
                       margin: const EdgeInsets.only(right: 10),
                       child: Image.network(
-                        verifyImage.verifyImage(resultsMovies.posterPath.toString()),
-                        height: 150,
-                        loadingBuilder: (BuildContext context, Widget child,ImageChunkEvent? loadingProgress) {
+                        verifyImage
+                            .verifyImage(resultsMovies.posterPath.toString()),
+                        height: 160,
+                        loadingBuilder: (BuildContext context, Widget child,
+                            ImageChunkEvent? loadingProgress) {
                           if (loadingProgress == null) {
                             return child;
-                          } 
+                          }
                           return Container(
                             color: AppColors.loadimage,
-                            height: 150,
+                            height: 160,
                             width: 135,
                             child: const Center(child: Text("Carregando...")),
                           );
-                        }, 
+                        },
                       ),
                     ),
                   );

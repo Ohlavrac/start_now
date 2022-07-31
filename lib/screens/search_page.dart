@@ -37,7 +37,8 @@ class _SearchPageState extends State<SearchPage> {
                 child: Container(
                   color: const Color.fromARGB(192, 255, 255, 255),
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 20, bottom: 15, right: 20),
+                    padding:
+                        const EdgeInsets.only(left: 20, bottom: 15, right: 20),
                     child: TextField(
                       onChanged: (String value) => search(value),
                       onSubmitted: (String value) => search(value),
@@ -56,8 +57,10 @@ class _SearchPageState extends State<SearchPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GenereButton(genere: 'Ação', onTap: () => search("Ação")),
-                    GenereButton(genere: 'Terror', onTap: () => search("Terror")),
-                    GenereButton(genere: 'Comédia', onTap: () => search("Comédia")),
+                    GenereButton(
+                        genere: 'Terror', onTap: () => search("Terror")),
+                    GenereButton(
+                        genere: 'Comédia', onTap: () => search("Comédia")),
                     GenereButton(genere: 'Drama', onTap: () => search("Drama")),
                   ],
                 ),
@@ -67,15 +70,20 @@ class _SearchPageState extends State<SearchPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    GenereButton(genere: 'Animação', onTap: () => search("Animação")),
-                    GenereButton(genere: 'Família', onTap: () => search("Família")),
-                    GenereButton(genere: 'Fantasia', onTap: () => search("Fantasia")),
-                    GenereButton(genere: 'História', onTap: () => search("História")),
+                    GenereButton(
+                        genere: 'Animação', onTap: () => search("Animação")),
+                    GenereButton(
+                        genere: 'Família', onTap: () => search("Família")),
+                    GenereButton(
+                        genere: 'Fantasia', onTap: () => search("Fantasia")),
+                    GenereButton(
+                        genere: 'História', onTap: () => search("História")),
                   ],
                 ),
               ),
-              movieName == null ? const Text("...") :
-              ResultsList(genere: movieName),
+              movieName == null
+                  ? const Text("...")
+                  : ResultsList(genere: movieName),
             ],
           ),
         ),
@@ -104,7 +112,7 @@ class _ResultsListState extends State<ResultsList> {
         return ListResultGenre(repositoryMovie: repositoryMovie, genre: "28");
 
       case "Comédia":
-        return ListResultGenre(repositoryMovie: repositoryMovie, genre:"35");
+        return ListResultGenre(repositoryMovie: repositoryMovie, genre: "35");
 
       case "Drama":
         return ListResultGenre(repositoryMovie: repositoryMovie, genre: "18");
@@ -113,7 +121,8 @@ class _ResultsListState extends State<ResultsList> {
         return ListResultGenre(repositoryMovie: repositoryMovie, genre: "27");
 
       case "Família":
-        return ListResultGenre(repositoryMovie: repositoryMovie, genre: "10751");
+        return ListResultGenre(
+            repositoryMovie: repositoryMovie, genre: "10751");
 
       case "Animação":
         return ListResultGenre(repositoryMovie: repositoryMovie, genre: "16");
@@ -126,27 +135,29 @@ class _ResultsListState extends State<ResultsList> {
 
       default:
         return FutureBuilder(
-                future: repositoryMovie.getSearchMovies(widget.genere),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    var movie = snapshot.data as List<ResultsMovieSearch>;
-                    return Expanded(
-                      child: ListView.builder(
-                        itemCount: movie.length,
-                        itemBuilder: (context, index) {
-                          ResultsMovieSearch resultsMovieSearch = movie[index];
-                          return CardMovie(
-                            resultsMovieSearch: resultsMovieSearch,
-                          );
-                        },
-                      ),
+          future: repositoryMovie.getSearchMovies(widget.genere),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              var movie = snapshot.data as List<ResultsMovieSearch>;
+              return Expanded(
+                child: ListView.builder(
+                  itemCount: movie.length,
+                  itemBuilder: (context, index) {
+                    ResultsMovieSearch resultsMovieSearch = movie[index];
+                    return CardMovie(
+                      resultsMovieSearch: resultsMovieSearch,
                     );
-                  } else if (snapshot.hasError) {
-                    return const Text("ERROR");
-                  }
-                  return const Center(child: Text("..."),);
-                },
+                  },
+                ),
               );
+            } else if (snapshot.hasError) {
+              return const Text("ERROR");
+            }
+            return const Center(
+              child: Text("..."),
+            );
+          },
+        );
     }
   }
 }

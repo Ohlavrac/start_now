@@ -9,12 +9,12 @@ class GenereButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 80,
+      width: 90,
       height: 40,
       child: ElevatedButton(
         onPressed: onTap,
         style: ElevatedButton.styleFrom(
-          primary: const Color.fromRGBO(85, 85, 85, 1),
+          primary: const Color.fromARGB(255, 28, 109, 156),
         ),
         child: Text(
           genere,

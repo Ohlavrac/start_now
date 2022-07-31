@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.all(10.0),
                   child: Column(children: [
                     Container(
-                      margin: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.all(12.0),
                       width: MediaQuery.of(context).size.width,
                       height: 200,
                       child: FutureBuilder(
@@ -47,33 +47,43 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Results movie = movies[index];
                                 return GestureDetector(
                                   onTap: () {
-                                    Navigator.pushNamed(context, "/movie_details", arguments: movie.id.toString());
+                                    Navigator.pushNamed(
+                                        context, "/movie_details",
+                                        arguments: movie.id.toString());
                                   },
                                   child: Card(
-                                    margin: const EdgeInsets.only(right: 10),
+                                    margin: const EdgeInsets.only(right: 11.5),
                                     child: Image.network(
-                                      verifyImage.verifyImage(movie.backdropPath.toString()),
-                                      height: 150,
-                                      loadingBuilder: (BuildContext context, Widget child,ImageChunkEvent? loadingProgress) {
+                                      verifyImage.verifyImage(
+                                          movie.backdropPath.toString()),
+                                      height: 190,
+                                      loadingBuilder: (BuildContext context,
+                                          Widget child,
+                                          ImageChunkEvent? loadingProgress) {
                                         if (loadingProgress == null) {
                                           return child;
-                                        } 
+                                        }
                                         return Container(
-                                          color: AppColors.loadimage,
+                                          color: AppColors.background,
                                           height: 150,
-                                          width: 250,
-                                          child: const Center(child: Text("Carregando...")),
+                                          width: 200,
+                                          child: const Center(
+                                              child: Text("Carregando...")),
                                         );
-                                      }, 
+                                      },
                                     ),
                                   ),
                                 );
                               },
                             );
                           } else if (snapshot.hasError) {
-                            return const Center(child: Text("ERROR"),);
+                            return const Center(
+                              child: Text("ERROR"),
+                            );
                           }
-                          return const Center(child: CircularProgressIndicator(),);
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
                         },
                       ),
                     ),
@@ -97,16 +107,24 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                     const SizedBox(height: 12),
-                    HorizontalMovieList(getmovie: repositoryMovieDetail.getPopularMoviesInBrazil(),),
-                    const SizedBox(height: 12,),
+                    HorizontalMovieList(
+                      getmovie:
+                          repositoryMovieDetail.getPopularMoviesInBrazil(),
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text("No Cinema", style: AppTexts.tag),
                       ],
                     ),
-                    const SizedBox(height: 12,),
-                    HorizontalMovieList(getmovie: repositoryMovieDetail.getMoviesCinema())
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    HorizontalMovieList(
+                        getmovie: repositoryMovieDetail.getMoviesCinema())
                   ]))),
         ));
   }

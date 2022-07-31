@@ -7,9 +7,10 @@ import '../themes/app_colors.dart';
 class CardMovie extends StatelessWidget {
   final ResultsMovieSearch resultsMovieSearch;
 
-  const CardMovie(
-      {Key? key, required this.resultsMovieSearch,})
-      : super(key: key);
+  const CardMovie({
+    Key? key,
+    required this.resultsMovieSearch,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,39 +18,37 @@ class CardMovie extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, "/movie_details", arguments: resultsMovieSearch.id.toString());
+        Navigator.pushNamed(context, "/movie_details",
+            arguments: resultsMovieSearch.id.toString());
       },
       child: Card(
         margin: const EdgeInsets.symmetric(vertical: 10),
-        color: const Color.fromRGBO(85, 85, 85, 1),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
+        color: Color.fromARGB(244, 250, 242, 242),
         child: SizedBox(
           width: double.infinity,
           height: 150,
           child: Row(
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(10),
                 child: Image.network(
-                 verifyImage.verifyImage(resultsMovieSearch.posterPath.toString()),
-                 height: 150,
-                 width: 100,
-                 loadingBuilder: (BuildContext context, Widget child,ImageChunkEvent? loadingProgress) {
-                  if (loadingProgress == null) {
-                    return child;
-                  } 
-                  return Container(
-                    height: 150,
-                    width: 100,
-                    decoration: BoxDecoration(
-                      color: AppColors.loadimage,
-                      borderRadius: BorderRadius.circular(10)
-                    ),
-                    child: const Center(child: Text("Carregando...")),
-                  );
-                }, 
+                  verifyImage
+                      .verifyImage(resultsMovieSearch.posterPath.toString()),
+                  height: 150,
+                  width: 100,
+                  loadingBuilder: (BuildContext context, Widget child,
+                      ImageChunkEvent? loadingProgress) {
+                    if (loadingProgress == null) {
+                      return child;
+                    }
+                    return Container(
+                      height: 150,
+                      width: 100,
+                      decoration: const BoxDecoration(
+                        color: AppColors.loadimage,
+                      ),
+                      child: const Center(child: Text("Carregando...")),
+                    );
+                  },
                 ),
               ),
               Padding(
@@ -63,14 +62,14 @@ class CardMovie extends StatelessWidget {
                       child: Text(
                         "${resultsMovieSearch.title}",
                         style: const TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                         ),
                       ),
                     ),
                     Text(
                       "${resultsMovieSearch.releaseDate}",
                       style: const TextStyle(
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                     ),
                     SizedBox(
@@ -78,7 +77,7 @@ class CardMovie extends StatelessWidget {
                       child: Text(
                         "${resultsMovieSearch.overview}",
                         style: const TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                         ),
                         textAlign: TextAlign.justify,
                         overflow: TextOverflow.ellipsis,

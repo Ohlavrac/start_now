@@ -32,28 +32,28 @@ class _TopTenPageState extends State<TopTenPage> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: FutureBuilder(
-                future: repositoryMovie.getTop10Movies(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    var movie = snapshot.data as List<Results>;
-                    return Expanded(
-                      child: ListView.builder(
-                        itemCount: 10,
-                        itemBuilder: (context, index) {
-                          Results topMovies = movie[index];
-                          return TopTenView(
-                            position: index+1,
-                            movie: topMovies,
-                          );
-                        },
-                      ),
-                    );
-                  } else if (snapshot.hasError) {
-                    return const Text("ERROR");
-                  }
-                  return const Center(child: CircularProgressIndicator());
-                },
-              ),
+              future: repositoryMovie.getTop10Movies(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  var movie = snapshot.data as List<Results>;
+                  return Expanded(
+                    child: ListView.builder(
+                      itemCount: 10,
+                      itemBuilder: (context, index) {
+                        Results topMovies = movie[index];
+                        return TopTenView(
+                          position: index + 1,
+                          movie: topMovies,
+                        );
+                      },
+                    ),
+                  );
+                } else if (snapshot.hasError) {
+                  return const Text("ERROR");
+                }
+                return const Center(child: CircularProgressIndicator());
+              },
+            ),
           ),
         ),
       ),
