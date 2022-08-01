@@ -3,6 +3,7 @@ import 'package:start_now/controllers/verify_image.dart';
 import '../../models/movies.dart';
 import '../themes/app_colors.dart';
 import '../themes/app_texts.dart';
+import 'loading_image.dart';
 
 class HorizontalMovieList extends StatelessWidget {
   final Future<List<Results>?> getmovie;
@@ -46,18 +47,12 @@ class HorizontalMovieList extends StatelessWidget {
                       child: Image.network(
                         verifyImage
                             .verifyImage(resultsMovies.posterPath.toString()),
-                        height: 160,
                         loadingBuilder: (BuildContext context, Widget child,
                             ImageChunkEvent? loadingProgress) {
                           if (loadingProgress == null) {
                             return child;
                           }
-                          return Container(
-                            color: AppColors.loadimage,
-                            height: 160,
-                            width: 135,
-                            child: const Center(child: Text("Carregando...")),
-                          );
+                          return const LoadingImage(height: 160, width: 120,);
                         },
                       ),
                     ),

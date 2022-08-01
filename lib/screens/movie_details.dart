@@ -26,7 +26,6 @@ class _MovieDetailsState extends State<MovieDetails> {
   int temp = 3;
 
   void _onItemTapped(int index) {
-    print(index);
     setState(() {
       _selectedIndex = index;
       temp = 0;

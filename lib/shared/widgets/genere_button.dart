@@ -9,7 +9,7 @@ class GenereButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 90,
+      width: 80,
       height: 40,
       child: ElevatedButton(
         onPressed: onTap,

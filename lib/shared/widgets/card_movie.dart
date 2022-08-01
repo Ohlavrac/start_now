@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:start_now/controllers/verify_image.dart';
 
 import '../../models/search_movie.dart';
-import '../themes/app_colors.dart';
+import 'loading_image.dart';
 
 class CardMovie extends StatelessWidget {
   final ResultsMovieSearch resultsMovieSearch;
@@ -40,14 +40,7 @@ class CardMovie extends StatelessWidget {
                     if (loadingProgress == null) {
                       return child;
                     }
-                    return Container(
-                      height: 150,
-                      width: 100,
-                      decoration: const BoxDecoration(
-                        color: AppColors.loadimage,
-                      ),
-                      child: const Center(child: Text("Carregando...")),
-                    );
+                    return const LoadingImage(height: 150, width: 100,);
                   },
                 ),
               ),

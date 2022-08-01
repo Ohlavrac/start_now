@@ -44,7 +44,7 @@ class _SearchPageState extends State<SearchPage> {
                       onSubmitted: (String value) => search(value),
                       decoration: const InputDecoration(
                         suffixIconColor: Colors.white,
-                        labelText: 'Search',
+                        labelText: 'Pesquisar',
                         suffixIcon: Icon(Icons.search),
                       ),
                     ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:start_now/models/movies.dart';
 import 'package:start_now/shared/widgets/horizontal_movie_list.dart';
+import 'package:start_now/shared/widgets/loading_image.dart';
 import '../controllers/verify_image.dart';
 import '../repositories/repository_movie_detail.dart';
 import '../shared/themes/app_colors.dart';
@@ -51,25 +52,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                         context, "/movie_details",
                                         arguments: movie.id.toString());
                                   },
-                                  child: Card(
-                                    margin: const EdgeInsets.only(right: 11.5),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(right: 10),
                                     child: Image.network(
                                       verifyImage.verifyImage(
                                           movie.backdropPath.toString()),
-                                      height: 190,
                                       loadingBuilder: (BuildContext context,
                                           Widget child,
                                           ImageChunkEvent? loadingProgress) {
                                         if (loadingProgress == null) {
                                           return child;
                                         }
-                                        return Container(
-                                          color: AppColors.background,
-                                          height: 150,
-                                          width: 200,
-                                          child: const Center(
-                                              child: Text("Carregando...")),
-                                        );
+                                        return const LoadingImage(width: 150, height: 200,);
                                       },
                                     ),
                                   ),
