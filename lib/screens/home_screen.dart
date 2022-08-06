@@ -31,7 +31,9 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Padding(
                   //  physics: const BouncingScrollPhysics(),
                   padding: const EdgeInsets.all(10.0),
-                  child: Column(children: [
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                     Container(
                       margin: const EdgeInsets.all(12.0),
                       width: MediaQuery.of(context).size.width,
@@ -82,24 +84,21 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    SmoothPageIndicator(
-                      controller: _controller,
-                      count: 3,
-                      effect: const ExpandingDotsEffect(
-                        activeDotColor: AppColors.loadimage,
-                        dotColor: AppColors.colorIcon,
-                        dotHeight: 8,
-                        dotWidth: 8,
-                        spacing: 2,
+                    Center(
+                      child: SmoothPageIndicator(
+                        controller: _controller,
+                        count: 3,
+                        effect: const ExpandingDotsEffect(
+                          activeDotColor: AppColors.loadimage,
+                          dotColor: AppColors.colorIcon,
+                          dotHeight: 8,
+                          dotWidth: 8,
+                          spacing: 2,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("Popular no Brasil", style: AppTexts.tag),
-                      ],
-                    ),
+                    Text("Popular no Brasil", style: AppTexts.tag),
                     const SizedBox(height: 12),
                     HorizontalMovieList(
                       getmovie:
@@ -108,12 +107,26 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(
                       height: 12,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("No Cinema", style: AppTexts.tag),
-                      ],
+                    const SizedBox(height: 20),
+                    /*Text("Disponivel na Netflix", style: AppTexts.tag),
+                    const SizedBox(height: 12),
+                    HorizontalMovieList(
+                      getmovie:
+                          repositoryMovieDetail.getNetflixMovies(),
                     ),
+                    const SizedBox(
+                      height: 12,
+                    ),*/
+                    /*Text("Disponivel na Prime Video", style: AppTexts.tag),
+                    const SizedBox(height: 12),
+                    HorizontalMovieList(
+                      getmovie:
+                          repositoryMovieDetail.getPrimeVideoMovies(),
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),*/
+                    Text("No Cinema", style: AppTexts.tag),
                     const SizedBox(
                       height: 12,
                     ),

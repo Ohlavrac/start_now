@@ -105,8 +105,6 @@ class _ResultsListState extends State<ResultsList> {
   @override
   Widget build(BuildContext context) {
     RepositoryMovieDetail repositoryMovie = RepositoryMovieDetail();
-
-    print(widget.genere);
     switch (widget.genere) {
       case "Ação":
         return ListResultGenre(repositoryMovie: repositoryMovie, genre: "28");
