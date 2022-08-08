@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:start_now/controllers/verify_image.dart';
 import '../../models/movies.dart';
-import '../themes/app_colors.dart';
 import '../themes/app_texts.dart';
 import 'loading_image.dart';
 
@@ -52,7 +51,10 @@ class HorizontalMovieList extends StatelessWidget {
                           if (loadingProgress == null) {
                             return child;
                           }
-                          return const LoadingImage(height: 160, width: 120,);
+                          return const LoadingImage(
+                            height: 160,
+                            width: 120,
+                          );
                         },
                       ),
                     ),

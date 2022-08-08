@@ -4,7 +4,9 @@ import 'package:start_now/shared/themes/app_colors.dart';
 class MyBottomNavBar extends StatefulWidget {
   final void Function(int value)? onItemTapped;
   final int selectedIndex;
-  const MyBottomNavBar({Key? key, required this.onItemTapped, required this.selectedIndex}) : super(key: key);
+  const MyBottomNavBar(
+      {Key? key, required this.onItemTapped, required this.selectedIndex})
+      : super(key: key);
 
   @override
   State<MyBottomNavBar> createState() => _MyBottomNavBarState();
@@ -17,7 +19,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
       decoration: const BoxDecoration(
         boxShadow: <BoxShadow>[
           BoxShadow(
-            color: Colors.black,
+            color: AppColors.colorBlack,
             blurRadius: 10,
           ),
         ],
@@ -36,7 +38,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
             label: 'Home',
             activeIcon: Icon(
               Icons.home,
-              color: Colors.white,
+              color: AppColors.colorWhite,
             ),
           ),
           BottomNavigationBarItem(
@@ -47,7 +49,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
             label: 'Search',
             activeIcon: Icon(
               Icons.search,
-              color: Colors.white,
+              color: AppColors.colorWhite,
             ),
           ),
           BottomNavigationBarItem(
@@ -58,7 +60,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
             label: 'Top10',
             activeIcon: Icon(
               Icons.rocket_launch_outlined,
-              color: Colors.white,
+              color: AppColors.colorWhite,
             ),
           ),
         ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:start_now/controllers/verify_image.dart';
 
 import '../../models/search_movie.dart';
+import '../themes/app_colors.dart';
 import 'loading_image.dart';
 
 class CardMovie extends StatelessWidget {
@@ -23,7 +24,7 @@ class CardMovie extends StatelessWidget {
       },
       child: Card(
         margin: const EdgeInsets.symmetric(vertical: 10),
-        color: Color.fromARGB(244, 250, 242, 242),
+        color: AppColors.colorWhite,
         child: SizedBox(
           width: double.infinity,
           height: 150,
@@ -40,7 +41,10 @@ class CardMovie extends StatelessWidget {
                     if (loadingProgress == null) {
                       return child;
                     }
-                    return const LoadingImage(height: 150, width: 100,);
+                    return const LoadingImage(
+                      height: 150,
+                      width: 100,
+                    );
                   },
                 ),
               ),

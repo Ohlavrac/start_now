@@ -35,7 +35,7 @@ class _SearchPageState extends State<SearchPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: Container(
-                  color: const Color.fromARGB(192, 255, 255, 255),
+                  color: AppColors.colorContainer,
                   child: Padding(
                     padding:
                         const EdgeInsets.only(left: 20, bottom: 15, right: 20),
@@ -43,7 +43,7 @@ class _SearchPageState extends State<SearchPage> {
                       onChanged: (String value) => search(value),
                       onSubmitted: (String value) => search(value),
                       decoration: const InputDecoration(
-                        suffixIconColor: Colors.white,
+                        suffixIconColor: AppColors.colorWhite,
                         labelText: 'Pesquisar',
                         suffixIcon: Icon(Icons.search),
                       ),

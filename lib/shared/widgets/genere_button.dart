@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../themes/app_colors.dart';
+
 class GenereButton extends StatelessWidget {
   final String genere;
   final void Function() onTap;
@@ -14,7 +16,7 @@ class GenereButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onTap,
         style: ElevatedButton.styleFrom(
-          primary: const Color.fromARGB(255, 28, 109, 156),
+          primary: AppColors.colorGenereButton,
         ),
         child: Text(
           genere,

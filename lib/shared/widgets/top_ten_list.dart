@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:start_now/models/movies.dart';
-
 import '../themes/app_colors.dart';
 
 class TopTenView extends StatelessWidget {
@@ -18,7 +17,7 @@ class TopTenView extends StatelessWidget {
             arguments: movie.id.toString());
       },
       child: Card(
-        color: Color.fromARGB(226, 250, 242, 242),
+        color: AppColors.colorCard,
         shape: const RoundedRectangleBorder(),
         child: SizedBox(
           width: double.infinity,
@@ -57,14 +56,14 @@ class TopTenView extends StatelessWidget {
                           child: Text(
                             "${movie.title}",
                             style: const TextStyle(
-                              color: Colors.black,
+                              color: AppColors.colorBlack,
                             ),
                           ),
                         ),
                         Text(
                           '${movie.releaseDate}',
                           style: const TextStyle(
-                            color: Colors.black,
+                            color: AppColors.colorBlack,
                           ),
                         ),
                         SizedBox(
@@ -72,7 +71,7 @@ class TopTenView extends StatelessWidget {
                           child: Text(
                             "${movie.overview}",
                             style: const TextStyle(
-                              color: Colors.black,
+                              color: AppColors.colorBlack,
                             ),
                             textAlign: TextAlign.justify,
                             overflow: TextOverflow.ellipsis,
