@@ -12,7 +12,7 @@ class RepositoryMovieDetail {
   final String endpointSearchMovie = "search/movie?api_key=$apikey&language=pt-BR&query=";
   final String endpointTopMovies = "movie/top_rated?api_key=$apikey&language=pt-BR&page=1&region=BR";
   final String endpointPopularBrazil = "movie/popular?api_key=$apikey&language=pt-BR&page=1&region=BR";
-  final String endpointCinema = "movie/now_playing?api_key=$apikey&language=pt-BR&page=1&region=BR";
+  final String endpointCinema = "movie/now_playing?api_key=$apikey&language=pt-BR&page=2&region=BR";
   final String endpointUpcoming = "movie/upcoming?api_key=$apikey&language=pt-BR&page=1&region=BR";
   final String endpointMovieByGenres = "discover/movie?api_key=$apikey&language=pt-BR&sort_by=revenue.desc&include_adult=false&include_video=false&page=1&with_genres=";
   final String endpointNetflixMovies = "discover/movie?api_key=$apikey&with_watch_providers=8&watch_region=BR";

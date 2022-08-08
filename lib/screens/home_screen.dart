@@ -108,24 +108,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 12,
                     ),
                     const SizedBox(height: 20),
-                    /*Text("Disponivel na Netflix", style: AppTexts.tag),
-                    const SizedBox(height: 12),
-                    HorizontalMovieList(
-                      getmovie:
-                          repositoryMovieDetail.getNetflixMovies(),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),*/
-                    /*Text("Disponivel na Prime Video", style: AppTexts.tag),
-                    const SizedBox(height: 12),
-                    HorizontalMovieList(
-                      getmovie:
-                          repositoryMovieDetail.getPrimeVideoMovies(),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),*/
                     Text("No Cinema", style: AppTexts.tag),
                     const SizedBox(
                       height: 12,
