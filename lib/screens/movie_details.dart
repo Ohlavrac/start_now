@@ -163,7 +163,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                                       const EdgeInsets.symmetric(vertical: 60),
                                   child: Center(
                                       child: Text(
-                                    "Esse filme não tem Sinopse '-'",
+                                    "Esse filme não tem Sinopse",
                                     style: AppTexts.title,
                                   )),
                                 )
@@ -196,16 +196,14 @@ class _MovieDetailsState extends State<MovieDetails> {
                                 return SizedBox(
                                   height: 200,
                                   width: double.infinity,
-                                  child: Expanded(
-                                    child: ListView.builder(
-                                      scrollDirection: Axis.horizontal,
-                                      itemCount: 10,
-                                      itemBuilder: (context, index) {
-                                        Results resultsMovies = movies[index];
-                                        return RecommendedMoviesCard(
-                                            resultsMovies: resultsMovies);
-                                      },
-                                    ),
+                                  child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: 10,
+                                    itemBuilder: (context, index) {
+                                      Results resultsMovies = movies[index];
+                                      return RecommendedMoviesCard(
+                                          resultsMovies: resultsMovies);
+                                    },
                                   ),
                                 );
                               } else if (snapshot.hasError) {

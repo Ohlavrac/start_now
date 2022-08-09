@@ -30,43 +30,41 @@ class HorizontalMovieList extends StatelessWidget {
           return SizedBox(
             height: 180,
             width: double.infinity,
-            child: Expanded(
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  Results resultsMovies = movies[index];
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, "/movie_details",
-                          arguments: resultsMovies.id.toString());
-                    },
-                    child: Card(
-                      margin: const EdgeInsets.only(right: 10),
-                      child: Image.network(
-                        verifyImage
-                            .verifyImage(resultsMovies.posterPath.toString()),
-                        loadingBuilder: (BuildContext context, Widget child,
-                            ImageChunkEvent? loadingProgress) {
-                          if (loadingProgress == null) {
-                            return child;
-                          }
-                          return const LoadingImage(
-                            height: 160,
-                            width: 120,
-                          );
-                        },
-                      ),
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 9,
+              itemBuilder: (context, index) {
+                Results resultsMovies = movies[index];
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, "/movie_details",
+                        arguments: resultsMovies.id.toString());
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Image.network(
+                      verifyImage
+                          .verifyImage(resultsMovies.posterPath.toString()),
+                      loadingBuilder: (BuildContext context, Widget child,
+                          ImageChunkEvent? loadingProgress) {
+                        if (loadingProgress == null) {
+                          return child;
+                        }
+                        return const LoadingImage(
+                          height: 160,
+                          width: 120,
+                        );
+                      },
                     ),
-                  );
-                },
-              ),
+                  ),
+                );
+              },
             ),
           );
         } else if (snapshot.hasError) {
           return const Text("ERROR");
         }
-        return const CircularProgressIndicator();
+        return const Center(child: CircularProgressIndicator());
       },
     );
   }

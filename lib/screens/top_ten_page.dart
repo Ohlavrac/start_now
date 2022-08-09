@@ -3,7 +3,7 @@ import 'package:start_now/models/movies.dart';
 import 'package:start_now/repositories/repository_movie_detail.dart';
 
 import '../shared/themes/app_colors.dart';
-import '../shared/widgets/top_ten_list.dart';
+import '../shared/widgets/ton_ten_card.dart';
 
 class TopTenPage extends StatefulWidget {
   const TopTenPage({Key? key}) : super(key: key);
@@ -36,17 +36,15 @@ class _TopTenPageState extends State<TopTenPage> {
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   var movie = snapshot.data as List<Results>;
-                  return Expanded(
-                    child: ListView.builder(
-                      itemCount: 10,
-                      itemBuilder: (context, index) {
-                        Results topMovies = movie[index];
-                        return TopTenView(
-                          position: index + 1,
-                          movie: topMovies,
-                        );
-                      },
-                    ),
+                  return ListView.builder(
+                    itemCount: 10,
+                    itemBuilder: (context, index) {
+                      Results topMovies = movie[index];
+                      return TopTenView(
+                        position: index + 1,
+                        movie: topMovies,
+                      );
+                    },
                   );
                 } else if (snapshot.hasError) {
                   return const Text("ERROR");
