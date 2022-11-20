@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:start_now/controllers/verify_image.dart';
-import '../../models/movies.dart';
+import 'package:start_now/domain/entities/movie_detail_entity.dart';
+import '../../../models/movies.dart';
 import '../themes/app_texts.dart';
 import 'loading_image.dart';
 
 class HorizontalMovieList extends StatelessWidget {
-  final Future<List<Results>?> getmovie;
+  final Future<List<MovieEntity>?> getmovie;
 
   HorizontalMovieList({Key? key, required this.getmovie}) : super(key: key);
 
@@ -16,7 +17,7 @@ class HorizontalMovieList extends StatelessWidget {
       future: getmovie,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          var movies = snapshot.data as List<Results>;
+          var movies = snapshot.data as List<MovieEntity>;
           if (movies.isEmpty) {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 60),
@@ -34,7 +35,7 @@ class HorizontalMovieList extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: 9,
               itemBuilder: (context, index) {
-                Results resultsMovies = movies[index];
+                MovieEntity resultsMovies = movies[index];
                 return GestureDetector(
                   onTap: () {
                     Navigator.pushNamed(context, "/movie_details",

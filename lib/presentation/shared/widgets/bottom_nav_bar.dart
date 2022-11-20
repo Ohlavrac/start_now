@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:start_now/shared/themes/app_colors.dart';
+
+import '../themes/app_colors.dart';
 
 class MyBottomNavBar extends StatefulWidget {
   final void Function(int value)? onItemTapped;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:start_now/screens/home_screen.dart';
-import 'package:start_now/screens/search_page.dart';
-import 'package:start_now/screens/top_ten_page.dart';
 import '../shared/widgets/bottom_nav_bar.dart';
+import 'home_screen.dart';
+import 'search_page.dart';
+import 'top_ten_page.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);

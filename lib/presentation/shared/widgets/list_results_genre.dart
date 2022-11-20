@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../models/search_movie.dart';
+import '../../../models/search_movie.dart';
 import '../../repositories/repository_movie_detail.dart';
 import 'card_movie.dart';
 

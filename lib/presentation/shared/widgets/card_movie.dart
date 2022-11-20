@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:start_now/controllers/verify_image.dart';
 
-import '../../models/search_movie.dart';
+import '../../../models/search_movie.dart';
 import '../themes/app_colors.dart';
 import 'loading_image.dart';
 

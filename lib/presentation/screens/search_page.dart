@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:start_now/models/search_movie.dart';
-import 'package:start_now/repositories/repository_movie_detail.dart';
-import 'package:start_now/shared/widgets/card_movie.dart';
-import 'package:start_now/shared/widgets/genere_button.dart';
-import 'package:start_now/shared/widgets/list_results_genre.dart';
 
+import '../repositories/repository_movie_detail.dart';
 import '../shared/themes/app_colors.dart';
+import '../shared/widgets/card_movie.dart';
+import '../shared/widgets/genere_button.dart';
+import '../shared/widgets/list_results_genre.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);

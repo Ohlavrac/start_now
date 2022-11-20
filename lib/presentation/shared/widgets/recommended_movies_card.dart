@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:start_now/controllers/verify_image.dart';
-import '../../models/movies.dart';
+import '../../../models/movies.dart';
 import '../themes/app_colors.dart';
 import '../themes/app_texts.dart';
 

@@ -3,14 +3,15 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:start_now/controllers/verify_image.dart';
 import 'package:start_now/models/movie_detail.dart';
 import 'package:start_now/models/movies.dart';
-import 'package:start_now/repositories/repository_movie_detail.dart';
-import 'package:start_now/screens/home_screen.dart';
-import 'package:start_now/screens/search_page.dart';
-import 'package:start_now/screens/top_ten_page.dart';
-import 'package:start_now/shared/themes/app_colors.dart';
-import 'package:start_now/shared/themes/app_texts.dart';
-import 'package:start_now/shared/widgets/bottom_nav_bar.dart';
-import 'package:start_now/shared/widgets/recommended_movies_card.dart';
+import 'package:start_now/presentation/screens/top_ten_page.dart';
+
+import '../repositories/repository_movie_detail.dart';
+import '../shared/themes/app_colors.dart';
+import '../shared/themes/app_texts.dart';
+import '../shared/widgets/bottom_nav_bar.dart';
+import '../shared/widgets/recommended_movies_card.dart';
+import 'home_screen.dart';
+import 'search_page.dart';
 
 class MovieDetails extends StatefulWidget {
   //final String movieID = "297761";

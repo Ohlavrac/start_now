@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:start_now/models/movies.dart';
 import 'package:start_now/models/search_movie.dart';
 
-import '../models/movie_detail.dart';
+import '../../models/movie_detail.dart';
 
 class RepositoryMovieDetail {
   final String baseURL = "https://api.themoviedb.org/3/";

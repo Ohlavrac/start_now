@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:start_now/domain/entities/movie_detail_entity.dart';
 import 'package:start_now/models/movies.dart';
 import '../themes/app_colors.dart';
 
 class TopTenView extends StatelessWidget {
-  final Results movie;
+  final MovieEntity movie;
   final int position;
 
   const TopTenView({Key? key, required this.movie, required this.position})

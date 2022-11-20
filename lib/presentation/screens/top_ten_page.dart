@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:start_now/models/movies.dart';
-import 'package:start_now/repositories/repository_movie_detail.dart';
+import 'package:provider/provider.dart';
+import 'package:start_now/domain/entities/movie_detail_entity.dart';
+import 'package:start_now/presentation/providers/movies_providers.dart';
 
+import '../repositories/repository_movie_detail.dart';
 import '../shared/themes/app_colors.dart';
 import '../shared/widgets/ton_ten_card.dart';
 
@@ -16,6 +18,7 @@ class _TopTenPageState extends State<TopTenPage> {
   @override
   Widget build(BuildContext context) {
     RepositoryMovieDetail repositoryMovie = RepositoryMovieDetail();
+    var movieprovider = context.read<MoviesProviders>().getTop10MoviesProvider();
 
     return Material(
       child: Scaffold(
@@ -32,14 +35,14 @@ class _TopTenPageState extends State<TopTenPage> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: FutureBuilder(
-              future: repositoryMovie.getTop10Movies(),
+              future: movieprovider,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  var movie = snapshot.data as List<Results>;
+                  var movie = snapshot.data as List<MovieEntity>;
                   return ListView.builder(
                     itemCount: 10,
                     itemBuilder: (context, index) {
-                      Results topMovies = movie[index];
+                      MovieEntity topMovies = movie[index] as MovieEntity;
                       return TopTenView(
                         position: index + 1,
                         movie: topMovies,

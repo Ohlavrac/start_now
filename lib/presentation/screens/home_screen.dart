@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:start_now/models/movies.dart';
-import 'package:start_now/shared/widgets/horizontal_movie_list.dart';
-import 'package:start_now/shared/widgets/loading_image.dart';
-import '../controllers/verify_image.dart';
+import 'package:start_now/presentation/providers/movies_providers.dart';
+import '../../controllers/verify_image.dart';
 import '../repositories/repository_movie_detail.dart';
 import '../shared/themes/app_colors.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../shared/themes/app_texts.dart';
+import '../shared/widgets/horizontal_movie_list.dart';
+import '../shared/widgets/loading_image.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -23,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     VerifyImage verifyImage = VerifyImage();
+    var movieRepository = context.read<MoviesProviders>();
 
     return Scaffold(
         backgroundColor: AppColors.background,
@@ -102,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(height: 12),
                     HorizontalMovieList(
                       getmovie:
-                          repositoryMovieDetail.getPopularMoviesInBrazil(),
+                          movieRepository.getMoviesPopularInBrazil(),
                     ),
                     const SizedBox(
                       height: 12,
@@ -113,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 12,
                     ),
                     HorizontalMovieList(
-                        getmovie: repositoryMovieDetail.getMoviesCinema())
+                        getmovie: movieRepository.getMoviesFromCinema())
                   ]))),
         ));
   }
